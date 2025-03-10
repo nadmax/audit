@@ -128,7 +128,7 @@ detect_os() {
 
 check_root() {
     if [[ $EUID -ne  0 ]]; then
-        log error "Error: Please run as root."
+        log error "Error: Please run it with sudo."
         exit 1
     fi
 }
@@ -156,6 +156,7 @@ main() {
     check_root
     detect_os
     system_info
+    security_updates
     user_security
     ssh_security
     failed_logins
