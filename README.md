@@ -20,6 +20,7 @@ This script does the following tasks:
 - Checks firewall status
 - Lists active network connections
 - Logs each step  
+- Calculate audit time  
 
 To run the script:
 ```bash
