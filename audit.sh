@@ -1,8 +1,30 @@
+# Author: nadmax
+# Date: 28/02/2025
+
 LOG_FILE="/var/log/linux_audit_$(date +%F).log"
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 RESET="\e[0m"
+START_TIME=$(date +%s)
+
+calculate_execution_time() {
+    local START_TIME=$1
+    local END_TIME=$(date +%s)
+    local EXECUTION_TIME=$((END_TIME - START_TIME))
+
+    local HOURS=$((EXECUTION_TIME / 3600))
+    local MINUTES=$(((EXECUTION_TIME % 3600) / 60))
+    local SECONDS=$((EXECUTION_TIME % 60))
+
+    if [[ $HOURS -gt 0 ]]; then
+        TIME="${MINUTES}m${SECONDS}s"
+    else
+        TIME="${SECONDS}s"
+    fi
+
+    echo "$TIME"
+}
 
 network_connections() {
     log info "\n[+] Active Network Connections:"
@@ -168,7 +190,10 @@ main() {
     running_services
     firewall_status
     network_connections
+    
+    EXECUTION_TIME=$(calculate_execution_time "$START_TIME")
 
+    log success "[+] Execution Time: $EXECUTION_TIME"
     log success "\n[+] Audit Complete. Report saved in $LOG_FILE"
 }
 
