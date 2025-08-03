@@ -1,6 +1,9 @@
-# audit.sh
+# audit
+
+## Explanation
 
 This script does the following tasks:  
+
 - Checks if you run the script with sudo
 - Detects which OS it is to manage audit
 - Checks system infos (kernel version, hostname, etc.)
@@ -22,7 +25,11 @@ This script does the following tasks:
 - Logs each step  
 - Calculate audit time  
 
+## Getting started
+
 To run the script:
-```bash
+
+```sh
+chmod +x audit.sh
 sudo ./audit.sh
 ```
